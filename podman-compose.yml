@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: dockerfile
+      dockerfile: Containerfile
     ports:
       - "3000:3000"
     volumes:
@@ -14,7 +14,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: dockerfile
+      dockerfile: frontend/Containerfile
     ports:
       - "5173:5173"
     volumes:
