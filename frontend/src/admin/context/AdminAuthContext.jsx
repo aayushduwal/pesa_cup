@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import API_BASE_URL from "../../data/apis/config";
 
 const STORAGE_KEY = "pesa_admin_key";
@@ -12,7 +12,7 @@ const AdminAuthContext = createContext(null);
  */
 export function AdminAuthProvider({ children }) {
   const [adminKey, setAdminKey] = useState(
-    () => sessionStorage.getItem(STORAGE_KEY) || ""
+    () => sessionStorage.getItem(STORAGE_KEY) || "",
   );
   const [verifying, setVerifying] = useState(false);
 
@@ -27,7 +27,7 @@ export function AdminAuthProvider({ children }) {
         throw new Error(
           response.status === 401
             ? "Invalid admin key."
-            : "Unable to verify key right now."
+            : "Unable to verify key right now.",
         );
       }
       sessionStorage.setItem(STORAGE_KEY, key);

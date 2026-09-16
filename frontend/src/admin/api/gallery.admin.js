@@ -11,6 +11,7 @@ export const GalleryAdminAPI = {
     return adminFetch("/gallery", { method: "POST", body: formData });
   },
 
-  update: (id, meta) => adminFetch(`/gallery/${id}`, { method: "PATCH", body: meta }),
+  update: (id, meta) =>
+    adminFetch(`/gallery/${id}`, { method: "PATCH", body: meta }),
   remove: (id) => adminFetch(`/gallery/${id}`, { method: "DELETE" }),
 };

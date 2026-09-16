@@ -80,7 +80,7 @@
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -89,10 +89,12 @@
 
   .nav {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 60px;
     left: 0;
     width: 100%;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
     background: #0a1628;
     flex-direction: column;
     align-items: flex-start;
@@ -114,5 +116,20 @@
 
   .nav-link:hover {
     background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+@media (max-width: 480px) {
+  .pesa-logo {
+    height: 42px;
+    width: 42px;
+  }
+
+  .prabhat-logo {
+    height: 46px;
+  }
+
+  .logo {
+    gap: 0.4rem;
   }
 }

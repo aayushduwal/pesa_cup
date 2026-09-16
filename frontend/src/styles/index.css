@@ -176,6 +176,11 @@ a:hover {
     padding: 10px 20px;
     font-size: 0.9rem;
   }
+
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 
 /* Animations */

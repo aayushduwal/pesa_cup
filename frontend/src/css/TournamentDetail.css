@@ -88,7 +88,7 @@
   gap: 1.5rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .detail-grid-layout {
     grid-template-columns: 2fr 1fr;
   }
@@ -233,4 +233,56 @@
 
 .btn-register-action:hover {
   background-color: #f3e5ab;
+}
+
+/* ── Responsive Design ── */
+@media (max-width: 1024px) {
+  .sidebar-card {
+    position: static;
+    top: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .tournament-detail-page {
+    padding: 2rem 1.25rem;
+  }
+
+  .detail-hero-banner {
+    height: 190px;
+  }
+
+  .detail-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tournament-detail-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .detail-hero-banner {
+    height: auto;
+    min-height: 170px;
+    padding-bottom: 1.25rem;
+  }
+
+  .detail-hero-overlay {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .detail-title {
+    font-size: 1.4rem;
+  }
+
+  .detail-card {
+    padding: 1.15rem;
+  }
+
+  .prize-boxes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

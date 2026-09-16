@@ -37,12 +37,14 @@
   display: block;
   width: 80px;
   height: 3px;
+  border-radius: 2px;
   background: linear-gradient(
     90deg,
     transparent,
     var(--accent-gold),
     transparent
   );
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
   margin: 1rem auto 0;
 }
 

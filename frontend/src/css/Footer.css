@@ -8,7 +8,7 @@
   padding: 3rem 0 1rem;
   position: relative;
   border-top: 2px solid var(--accent-gold);
-  overflow: hidden; /* Prevent pseudo-element canvas bleed */
+  overflow: hidden;
 }
 
 .footer::before {
@@ -33,12 +33,13 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
 }
 
 .footer-section {
+  min-width: 0;
   animation: fadeInUp 0.6s ease forwards;
 }
 
@@ -80,6 +81,7 @@
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
 }
 
 .footer-links {
@@ -108,6 +110,12 @@
   color: var(--accent-gold);
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+.footer-links li span {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .footer-links a {
@@ -152,6 +160,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .social-link:hover {
@@ -233,7 +242,6 @@
   width: 100%;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .footer {
     padding: 2rem 0 1rem;
@@ -255,13 +263,40 @@
     gap: 1.5rem;
   }
 
-  .footer-social {
-    justify-content: flex-start;
-  }
-
   .footer-title {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+  }
+
+  /* Center every footer section */
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .footer-links li {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .footer-links-grid {
+    grid-auto-flow: row;
+    grid-template-rows: none;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-social-links {
+    justify-content: center;
   }
 
   .footer-text {
@@ -305,6 +340,10 @@
   .footer-links li {
     margin-bottom: 0.75rem;
     font-size: 0.85rem;
+  }
+
+  .footer-section:nth-child(2) .footer-links li {
+    margin-bottom: 1rem;
   }
 
   .footer-social {

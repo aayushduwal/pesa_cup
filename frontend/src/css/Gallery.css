@@ -4,6 +4,10 @@
   padding: 3rem 0;
 }
 
+.gallery-landing--embedded {
+  min-height: auto;
+}
+
 /* ── HERO ── */
 .gallery-hero {
   text-align: center;
@@ -26,11 +30,17 @@
 }
 
 .gallery-hero-line {
-  width: 60px;
+  width: 80px;
   height: 3px;
-  background: #f5c842;
   margin: 0 auto;
-  border-radius: 99px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #f5c842 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(245, 200, 66, 0.5);
 }
 
 /* ── CATEGORY CARDS ── */
@@ -215,6 +225,8 @@
 }
 
 .gallery-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -351,19 +363,21 @@
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .lightbox-nav.prev {
+    left: 10px;
+  }
+  .lightbox-nav.next {
+    right: 10px;
+  }
+}
+
 @media (max-width: 768px) {
   .gallery-categories {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
   .gallery-page-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .lightbox-nav.prev {
-    left: 10px;
-  }
-  .lightbox-nav.next {
-    right: 10px;
   }
 }
 
@@ -508,4 +522,33 @@
 
 .admin-photo-list td button:hover {
   background: #bd2130;
+}
+
+/* ── Admin gallery responsiveness ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .admin-gallery-page {
+    /* .admin-content (Admin.css) already provides horizontal padding on
+       mobile, so drop this page's own side padding to avoid doubling up
+       and eating the already-narrow viewport. */
+    padding: 0;
+  }
+
+  .upload-form {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-gallery-page h2 {
+    font-size: 1.7rem;
+  }
+
+  .upload-form {
+    padding: 1rem;
+  }
+
+  .admin-photo-list td img {
+    width: 40px;
+    height: 28px;
+  }
 }

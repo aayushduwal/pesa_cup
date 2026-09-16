@@ -27,12 +27,17 @@ export default function AdminLogin() {
       <form className="admin-login-card" onSubmit={handleSubmit}>
         <span className="admin-login-kicker">PESA CUP</span>
         <h1>Admin sign in</h1>
-        <p>Enter the admin key to manage registrations, fixtures, and content.</p>
+        <p>
+          Enter the admin key to manage registrations, fixtures, and content.
+        </p>
 
-        <div className="form-group">
-          <label htmlFor="adminKey">Admin key</label>
+        <div className="admin-form-group">
+          <label className="admin-form-label" htmlFor="adminKey">
+            Admin key
+          </label>
           <input
             id="adminKey"
+            className="admin-form-input"
             type="password"
             value={key}
             onChange={(e) => setKey(e.target.value)}
@@ -43,12 +48,16 @@ export default function AdminLogin() {
         </div>
 
         {error && (
-          <p className="form-error" role="alert">
+          <p className="admin-form-error" role="alert">
             {error}
           </p>
         )}
 
-        <button type="submit" className="btn btn-primary" disabled={verifying || !key.trim()}>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={verifying || !key.trim()}
+        >
           {verifying ? "Verifying…" : "Sign in"}
         </button>
       </form>

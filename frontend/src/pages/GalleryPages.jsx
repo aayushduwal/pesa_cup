@@ -198,12 +198,6 @@ export default function GalleryPage() {
                   src={photo.src}
                   alt={photo.caption}
                   className="gallery-img"
-                  style={{
-                    width: "100%",
-                    height: "220px",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
                 />
                 <div
                   className="gallery-caption"

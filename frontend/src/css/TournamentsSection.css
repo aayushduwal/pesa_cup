@@ -27,9 +27,9 @@
 }
 
 .ts-gold-line {
-  width: 140px;
+  width: 80px;
   height: 3px;
-  margin: 0.5rem auto 1rem auto;
+  margin: 1rem auto 1.25rem auto;
   border-radius: 2px;
   background: linear-gradient(
     90deg,
@@ -37,19 +37,7 @@
     #d4af37 50%,
     transparent 100%
   );
-  position: relative;
-}
-
-.ts-gold-line::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: inherit;
-  filter: blur(6px);
-  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
 }
 
 .ts-subtitle {
@@ -207,4 +195,60 @@
 .ts-view-all-link:hover {
   text-decoration: underline;
   opacity: 0.85;
+}
+
+/* ── Responsive Design ── */
+@media (max-width: 768px) {
+  .ts-wrapper {
+    padding: 3rem 1.25rem;
+  }
+
+  .ts-title {
+    font-size: 1.6rem;
+  }
+
+  .ts-grid {
+    gap: 1.25rem;
+  }
+
+  .ts-card {
+    max-width: 100%;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ts-wrapper {
+    padding: 2.5rem 1rem;
+  }
+
+  .ts-title {
+    font-size: 1.4rem;
+  }
+
+  .ts-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .ts-header {
+    margin-bottom: 2rem;
+  }
+
+  .ts-card {
+    padding: 1.1rem;
+  }
+
+  .ts-card-title {
+    font-size: 1.1rem;
+  }
+
+  .ts-btn-group {
+    flex-direction: column;
+  }
+
+  .ts-btn-details,
+  .ts-btn-register {
+    flex: none;
+    width: 100%;
+  }
 }

@@ -5,6 +5,7 @@ import {
   fetchGalleryImages,
   uploadGalleryImage,
 } from "../../data/apis/api.gallerys";
+import AdminModal from "../components/AdminModal";
 import "../css/Admin.css";
 
 const resolveImageUrl = (rawUrl) => {
@@ -259,86 +260,29 @@ export default function GalleryAdmin() {
       </div>
 
       {deleteId && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "#0d1b2a",
-              border: "1px solid #1e293b",
-              borderRadius: "8px",
-              padding: "24px",
-              width: "100%",
-              maxWidth: "400px",
-              boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
-              textAlign: "center",
-            }}
-          >
-            <h3 style={{ margin: "0 0 12px 0", color: "#f8fafc" }}>
-              Confirm Deletion
-            </h3>
-            <p
-              style={{
-                margin: "0 0 24px 0",
-                color: "#94a3b8",
-                fontSize: "14px",
-              }}
+        <AdminModal title="Confirm Deletion" onClose={() => setDeleteId(null)}>
+          <p className="admin-modal-text">
+            Are you sure you want to delete this photo permanently?
+          </p>
+          <div className="admin-modal-actions">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              disabled={deleting}
+              onClick={() => setDeleteId(null)}
             >
-              Are you sure you want to delete this photo permanently?
-            </p>
-            <div
-              style={{
-                display: "flex",
-                gap: "12px",
-                justifyContent: "center",
-              }}
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="btn admin-btn-danger"
+              disabled={deleting}
+              onClick={confirmDelete}
             >
-              <button
-                disabled={deleting}
-                onClick={() => setDeleteId(null)}
-                style={{
-                  padding: "8px 16px",
-                  borderRadius: "6px",
-                  border: "1px solid #334155",
-                  backgroundColor: "transparent",
-                  color: "#cbd5e1",
-                  cursor: deleting ? "not-allowed" : "pointer",
-                  fontWeight: "500",
-                  opacity: deleting ? 0.5 : 1,
-                }}
-              >
-                Cancel
-              </button>
-              <button
-                disabled={deleting}
-                onClick={confirmDelete}
-                style={{
-                  padding: "8px 16px",
-                  borderRadius: "6px",
-                  border: "none",
-                  backgroundColor: "#ef4444",
-                  color: "#ffffff",
-                  cursor: deleting ? "not-allowed" : "pointer",
-                  fontWeight: "500",
-                  opacity: deleting ? 0.5 : 1,
-                }}
-              >
-                {deleting ? "Deleting..." : "Delete"}
-              </button>
-            </div>
+              {deleting ? "Deleting..." : "Delete"}
+            </button>
           </div>
-        </div>
+        </AdminModal>
       )}
     </div>
   );

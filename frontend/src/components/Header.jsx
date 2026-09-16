@@ -1,14 +1,36 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Header.css";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const headerRef = useRef(null);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMenu = () => setIsMenuOpen(false);
+
+  // Close the mobile menu on outside click or on scroll.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleClickOutside = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
+        closeMenu();
+      }
+    };
+    const handleScroll = () => closeMenu();
+
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMenuOpen]);
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="header-container container">
         <div className="header-content">
           <Link to="/" className="logo">
@@ -30,7 +52,10 @@ export default function Header() {
             />
           </Link>
 
-          <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
+          <nav
+            className={`nav ${isMenuOpen ? "active" : ""}`}
+            onClick={closeMenu}
+          >
             <Link to="/" className="nav-link">
               HOME
             </Link>

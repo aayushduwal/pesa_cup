@@ -10,7 +10,9 @@ export default function ComingSoon({ title, description, apiHint }) {
         </div>
       </div>
       <div className="admin-coming-soon">
-        <p>This page hasn't been built out yet — the API client is ready to use.</p>
+        <p>
+          This page hasn't been built out yet — the API client is ready to use.
+        </p>
         {apiHint && <code>{apiHint}</code>}
       </div>
     </div>

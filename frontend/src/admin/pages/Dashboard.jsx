@@ -1,8 +1,8 @@
+import { CalendarDays, ClipboardList, Image, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ClipboardList, CalendarDays, Trophy, Image } from "lucide-react";
-import { RegistrationsAdminAPI } from "../api/registrations.admin";
 import { AdminAuthError } from "../api/adminClient";
+import { RegistrationsAdminAPI } from "../api/registrations.admin";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import "../css/Admin.css";
 
@@ -13,7 +13,7 @@ export default function Dashboard() {
   useEffect(() => {
     RegistrationsAdminAPI.getAll()
       .then((data) => {
-        const list = Array.isArray(data) ? data : data?.data ?? [];
+        const list = Array.isArray(data) ? data : (data?.data ?? []);
         setPendingCount(list.filter((r) => r.status === "PENDING").length);
       })
       .catch((err) => {
@@ -37,7 +37,9 @@ export default function Dashboard() {
           <span className="admin-dashboard-card-value">
             {pendingCount === null ? "—" : pendingCount}
           </span>
-          <span className="admin-dashboard-card-label">Pending registrations</span>
+          <span className="admin-dashboard-card-label">
+            Pending registrations
+          </span>
         </Link>
 
         <Link to="/admin/fixtures" className="admin-dashboard-card">

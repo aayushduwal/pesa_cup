@@ -5,7 +5,9 @@ import "../css/Hero.css";
 export default function Hero() {
   return (
     <section className="hero">
-      <img src={banner} alt="Futsal Tournament Banner" className="hero-img" />
+      <div className="hero-media">
+        <img src={banner} alt="Futsal Tournament Banner" className="hero-img" />
+      </div>
       <div className="hero-text">
         <h1 className="hero-title">
           <span className="highlight">PRABHAT ENGLISH</span>

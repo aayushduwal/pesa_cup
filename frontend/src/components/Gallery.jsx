@@ -5,6 +5,9 @@ import photo4 from "../assets/Gallery/4.jpg";
 import photoTeam from "../assets/Gallery/team.jpg";
 import "../css/Gallery.css";
 import { fetchGalleryImages } from "../data/apis/api.gallerys";
+import API_BASE_URL from "../data/apis/config";
+
+const UPLOADS_ORIGIN = API_BASE_URL.replace(/\/api\/v1$/, "");
 
 const staticCategories = [
   {
@@ -35,10 +38,10 @@ const resolveImageUrl = (rawUrl) => {
   if (rawUrl.startsWith("http") || rawUrl.startsWith("data:")) {
     return rawUrl;
   }
-  return `http://localhost:3000${rawUrl}`;
+  return `${UPLOADS_ORIGIN}${rawUrl}`;
 };
 
-export default function Gallery() {
+export default function Gallery({ isHomePage = false }) {
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
@@ -98,7 +101,9 @@ export default function Gallery() {
   };
 
   return (
-    <div className="gallery-landing">
+    <div
+      className={`gallery-landing${isHomePage ? " gallery-landing--embedded" : ""}`}
+    >
       <div className="container">
         <div className="gallery-hero">
           <h1 className="gallery-hero-title">Gallery</h1>

@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap");
 
-/* Prevent horizontal scroll */
 html,
 body {
   margin: 0;
@@ -12,32 +11,54 @@ body {
   box-sizing: border-box;
 }
 
-/* HERO */
 .hero {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  min-height: min(38.1vw, 631px);
   overflow: hidden;
-  line-height: 1;
+  background: #08254d;
 }
 
-/* IMAGE */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
 .hero-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% center;
   display: block;
-  height: auto;
+  clip-path: inset(0 0 3% 0);
 }
 
-/* TEXT OVERLAY */
-.hero-text {
+.hero::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 4%;
-  transform: translateY(-50%);
-  width: 32%;
-  z-index: 10;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    #08254d 0%,
+    #08254d 36%,
+    rgba(8, 37, 77, 0.88) 50%,
+    rgba(8, 37, 77, 0) 68%
+  );
+  pointer-events: none;
 }
 
-/* TITLE */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  margin-left: 4%;
+  width: min(46%, 560px);
+  padding: clamp(1.5rem, 3vw, 3rem) 0;
+}
+
 .hero-title {
   font-family: "Bebas Neue", sans-serif;
   font-size: clamp(2rem, 5vw, 4.5rem);
@@ -46,6 +67,7 @@ body {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 
 .highlight {
@@ -56,25 +78,24 @@ body {
   color: #f5c842;
 }
 
-/* SUBTITLE */
 .hero-subtitle {
   font-family: "Barlow", sans-serif;
   font-size: clamp(0.8rem, 1vw, 1rem);
   font-weight: 700;
   color: #b8cae4;
   margin-bottom: 10px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 
-/* DESCRIPTION */
 .hero-description {
   font-family: "Barlow", sans-serif;
   font-size: clamp(0.8rem, 1vw, 1rem);
   color: #d0dceb;
   line-height: 1.6;
   margin-bottom: 20px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 
-/* BUTTONS */
 .hero-buttons {
   display: flex;
   gap: 12px;
@@ -90,9 +111,9 @@ body {
   border-radius: 4px;
   transition: 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-/* PRIMARY BUTTON */
 .btn-primary {
   background: transparent;
   color: #f5c842;
@@ -104,9 +125,8 @@ body {
   color: #0a1628;
 }
 
-/* SECONDARY BUTTON */
 .btn-secondary {
-  background: transparent;
+  background: rgba(10, 22, 40, 0.25);
   color: #ffffff;
   border: 2px solid rgba(255, 255, 255, 0.7);
 }
@@ -116,23 +136,51 @@ body {
   border-color: #ffffff;
 }
 
-/* TABLET */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .hero {
+    min-height: min(82vw, 500px);
+    align-items: flex-end;
+  }
+
+  .hero-img {
+    object-position: 78% center;
+    filter: blur(3px) brightness(0.8) saturate(0.9);
+    transform: scale(1.06);
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 37, 77, 0.3) 0%,
+      rgba(8, 37, 77, 0.8) 45%,
+      rgba(8, 37, 77, 0.97) 100%
+    );
+  }
+
   .hero-text {
-    width: 55%;
-    left: 5%;
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+    padding: 2rem 6% 1.5rem;
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    align-items: center;
+    font-size: clamp(1.9rem, 7vw, 3rem);
+  }
+
+  .hero-buttons {
+    justify-content: center;
   }
 }
 
-/* MOBILE */
 @media (max-width: 480px) {
-  .hero-text {
-    width: 80%;
-    left: 5%;
+  .hero {
+    min-height: min(105vw, 560px);
+  }
+
+  .hero-img {
+    object-position: 82% center;
   }
 
   .hero-title {
@@ -141,10 +189,11 @@ body {
 
   .hero-buttons {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .btn {
-    width: fit-content;
+    width: 100%;
+    text-align: center;
   }
 }

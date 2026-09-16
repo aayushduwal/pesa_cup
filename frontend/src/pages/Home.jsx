@@ -16,7 +16,7 @@ export default function Home() {
       <StandingsSection />
       <TopScorersList />
       <Statistics />
-      <Gallery />
+      <Gallery isHomePage />
       <Sponsors />
     </main>
   );
